@@ -1,0 +1,28 @@
+autoinstall:
+  version: 1
+  identity:
+    hostname: ubuntu-desktop
+    username: joao
+    password: "$6$ZE4WV3QRJhPUnsNv$BpkTBYjUOxOiWV5sNPYDSitTwxW.3NHLmhRqptzpa8a4KTxGpkvMaSDbyq4PVri9kdpD1t7ldUBgwB6uveObg."
+  storage:
+    layout:
+      name: lvm
+  snaps:
+    - name: spotify
+      classic: false
+    - name: telegram-desktop
+      classic: false
+    - name: slack
+      class: false
+  packages:
+    - vim
+    - insomnia
+  late-commands:
+    - curtin in-target -- wget https://repo2.protonvpn.com/debian/dists/stable/main/binary-all/protonvpn-stable-release_1.0.3-3_all.deb
+    - curtin in-target -- dpkg -i ./protonvpn-stable-release_1.0.3-3_all.deb
+    - curtin in-target -- wget https://vscode.download.prss.microsoft.com/dbazure/download/stable/e170252f762678dec6ca2cc69aba1570769a5d39/code_1.88.1-1712771838_amd64.deb
+    - curtin in-target -- dpkg -i ./code_1.88.1-1712771838_amd64.deb
+    - curtin in-target -- wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+    - curtin in-target -- dpkg -i ./google-chrome-stable_current_amd64.deb
+    - curtin in-target -- apt update
+    - curtin in-target -- apt install -y proton-vpn-gnome-desktop
